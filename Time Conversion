@@ -1,0 +1,64 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+int main() {
+    string time;
+    cin >> time;
+    int hour,sec,min=0;
+    string output = time.substr(0, 8);
+    string ampm = time.substr(time.size() - 2);
+    string hourString = time.substr(0, 2);
+    string minString = time.substr(3,5);
+    string secString = time.substr(6,7);
+
+    if (ampm == "PM" && hourString != "12") {
+         hour = stoi(hourString);
+         sec = stoi(secString);
+         min = stoi(minString);
+        hour = hour + 12;
+    }
+    else if(ampm == "PM" && hourString == "12"){
+         hour = stoi(hourString);
+         sec = stoi(secString);
+         min = stoi(minString);
+    }
+    else if (ampm == "AM" && hourString == "12" && minString == "00" && secString=="00") {           cout<<"00:00:00";
+            return 0;
+    }
+    else {
+         hour = stoi(hourString);
+         sec = stoi(secString);
+         min = stoi(minString);
+         if(hour==12)
+         {hour=0;}
+    }
+    
+    if(hour<=9){
+        string h = '0' + to_string(hour);
+        cout<<h<<":";
+    }
+    else{
+        string h = to_string(hour);
+        cout<<h<<":";
+    }
+    if(min<=9){
+        string m = '0' + to_string(min);
+        cout<<m<<":";
+        }
+    else{
+        string m = to_string(min);
+        cout<<m<<":";        
+    }
+    if(sec<=9){
+        string se = '0' + to_string(sec);
+        cout<<se;
+    }
+    else{
+        string se = to_string(sec);
+        cout<<se;
+    }
+
+
+    return 0;
+}
